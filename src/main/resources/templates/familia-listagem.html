@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Sistema de Cadastramento</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Favicon -->
+        <link href="./img/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="/css/estilos.css">
+
+
+        <!-- Opcionais || Dever de casa: pesquisar por práticas SEO na web -->
+         <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
+        <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
+        <meta name="author" content="Clovis de Jesus">
+    </head>
+<body>
+
+
+
+<!-- Navegação -->
+    <<nav>
+        <a href="/">Página Inicial</a>
+        <a href="/familia/cadastro">Familia</a>
+        <a href="/individuo/cadastro">Individuo</a>
+            <div class="dropdown">
+                <a href="#">Consulta</a>
+                <div class="dropdown-content">
+                    <a href="/familia/lista">Listar Famílias</a>
+                    <a href="/individuo/lista">Listar Indivíduos</a>
+                </div>             
+            </div>
+    </nav>
+    
+    <div class="conteudo-centralizado">
+        <!-- Títulos e subtitulos-->
+        <h1>Listagem de Familias Cadastradas</h1>
+    </div>
+    
+    <section class="fundo-claro">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome da Família</th>
+                <th>Nr. de indivíduos</th>
+                <th>Endereço</th>
+                <th>Responsável</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr th:each="familia: ${familias}">
+                <td th:text="${familia.id}"></td>
+                <td th:text="${familia.nomeFamilia}"></td>
+                <td th:text="${familia.nrIndividuos}"></td>
+                <td th:text="${familia.endereco}"></td>
+                <td th:text="${familia.responsavel}"></td>
+                <td>
+                    <a th:href="@{'/familia/alterar/' + ${familia.id}}">Alterar</a>
+                    <a th:href="@{'/familia/excluir/' + ${familia.id}}"
+   th:onclick="'return confirm(\'Deseja excluir o ID ' + ${familia.id} + '?\')'">
+   Excluir
+</a>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    </section>
+</body>
+</html>

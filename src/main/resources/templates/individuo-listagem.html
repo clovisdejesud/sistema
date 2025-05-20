@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Sistema de Cadastramento</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+
+        <!-- Opcionais || Dever de casa: pesquisar por práticas SEO na web -->
+        <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
+        <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
+        <meta name="author" content="Clovis de Jesus">
+    </head>
+<body>
+
+
+
+<!-- Navegação -->
+    <nav>
+        <a href="/">Página Inicial</a>
+        <a href="/familia/cadastro">Familia</a>
+        <a href="/individuo/cadastro">Individuo</a>
+        <div class="dropdown">
+            <a href="#">Consulta</a>
+                <div class="dropdown-content">
+                    <a href="/familia/lista">Listar Famílias</a>
+                    <a href="/individuo/lista">Listar Indivíduos</a>
+                </div>             
+        </div>
+    </nav>
+
+    <div class="conteudo-centralizado">
+        <!-- Títulos e subtitulos -->
+        <h1>Listagem de Individuos Cadastradas</h1> 
+    </div> 
+
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Data de Nascimento</th>
+        <th>Família</th>
+    </tr>
+    <tr th:each="individuo : ${individuos}">
+        <td th:text="${individuo.id}"></td>
+        <td th:text="${individuo.nome}"></td>
+        <td th:text="${individuo.dataNasc}"></td>
+        <td th:text="${individuo.familia.nomeFamilia}"></td>
+    </tr>
+    </table>
+
+</body>
+</html>

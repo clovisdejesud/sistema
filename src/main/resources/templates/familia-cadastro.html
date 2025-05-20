@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Cadastro da Família</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link href="./img/favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="/css/estilos.css">
+
+
+    <!-- Opcionais || Dever de casa: pesquisar por práticas SEO na web -->
+    <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
+    <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
+    <meta name="author" content="Clovis de Jesus">
+
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    
+    
+    <!-- Navegação -->
+         <nav>
+            <a href="/">Página Inicial</a>
+            <a href="/familia/cadastro">Familia</a>
+            <a href="/individuo/cadastro">Individuo</a>
+            <div class="dropdown">
+                <a href="#">Consulta</a>
+                <div class="dropdown-content">
+                    <a href="/familia/lista">Listar Famílias</a>
+                    <a href="/individuo/lista">Listar Indivíduos</a>
+                </div>             
+            </div>
+        </nav>
+    
+            <div class="conteudo-centralizado">
+                <h1>Cadastro de Família</h1>
+            </div>
+    
+    <section class="form-cad">
+        <form method="post" th:action="@{/familia/gravar}" class="formulario">
+            
+            <label for="nomeFamilia">Nome Família</label>
+            <input type="text" th:field="${familia.nomeFamilia}" class="grande" required>
+            
+            <label for="nrIndividuo">Nr. de Indivíduos</label>
+            <input type="number" th:field="${familia.nrIndividuos}" required>
+            
+            <label for="endereco">Endereço</label>
+            <input type="text" th:field="${familia.endereco}" class="grande" required>
+            
+            <label for="responsavel">Responsável</label>
+            <input type="text" th:field="${familia.responsavel}" required>
+        
+            <div class="form-btn-center">
+                <button type="submit" class="btn">Salvar</button>
+            </div>
+        </form>
+    </section>
+
+</body>
+
+</html>

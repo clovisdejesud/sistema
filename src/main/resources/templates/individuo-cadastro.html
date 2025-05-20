@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Cadastro de Individuo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+
+        <!-- Opcionais || Dever de casa: pesquisar por práticas SEO na web -->
+        <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
+        <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
+        <meta name="author" content="Clovis de Jesus">
+     
+    </head>
+    <body>
+    
+        
+    
+        
+    <!-- Navegação -->
+           <nav>
+            <a href="/">Página Inicial</a>
+            <a href="/familia/cadastro">Familia</a>
+            <a href="/individuo/cadastro">Individuo</a>
+            <div class="dropdown">
+                <a href="#">Consulta</a>
+                <div class="dropdown-content">
+                    <a href="/familia/lista">Listar Famílias</a>
+                    <a href="/individuo/lista">Listar Indivíduos</a>
+                </div>             
+            </div>
+        </nav>
+    
+    <div class="conteudo-centralizado">
+        <h1>Cadastro de Individuo</h1> 
+    </div>
+
+    <section class="form-cad">
+        <form method="post" th:action="@{/individuo/gravar}" th:object="${individuo}" class="formulario">
+        
+            <label for="nome">Nome</label>
+            <input type="text" th:field="*{nome}" class="grande" required>
+            
+            <label for="dataNasc">Data Nasc</label>
+            <input type="date" th:field="*{dataNasc}" required>
+            
+            
+            <label for="familia">Família</label>
+            <select th:field="*{familia}">
+                <option th:each="fam : ${familias}" 
+                        th:value="${fam.id}"
+                        th:text="${fam.nomeFamilia}">
+                </option>
+            </select></p>
+            
+            <div class="form-btn-center">
+                <button type="submit" class="btn">Salvar</button>            
+            </div>
+        
+        </form>
+    </section>
+            
+    </body>
+</html>
