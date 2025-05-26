@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+
+        <!-- Opcionais || Dever de casa: pesquisar por práticas SEO na web -->
+        <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
+        <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
+        <meta name="author" content="Clovis de Jesus">
+    </head>
+    <body>
+        !-- Navegação -->
+        <nav>
+            <a href="/">Página Inicial</a>
+            <a href="/familia/cadastro">Familia</a>
+            <a href="/individuo/cadastro">Individuo</a>
+            <a href="/usuario/cadastro">Usuário</a>
+            <div class="dropdown">
+                <a href="#">Consulta</a>
+                <div class="dropdown-content">
+                    <a href="/familia/lista">Listar Famílias</a>
+                    <a href="/individuo/lista">Listar Indivíduos</a>
+                </div>             
+            </div>
+        </nav>
+
+        <div class="conteudo-centralizado">
+        <div class="conteudo-centralizado">
+            <h1>Login no Sitema de Cadastramento</h1>
+        </div>
+        <section class="form-cad">
+            <form th:action="@{/login}" method="post" class="formulario">
+                <label>Email</label>
+                <input type="text" name="username" required>
+                
+                <label>Senha</label>
+                <input type="password" name="password" required>
+                
+                <div th:if="${param.error}" style="color: red; margin-top: 10px;">
+                    Email ou senha inválidos!
+                </div>
+                <div th:if="${param.logout}" style="color: green; margin-top: 10px;">
+                    Logout realizado com sucesso!
+                </div>
+                <div class="form-btn-center">
+                    <button type="submit" class="btn">Entrar</button>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

@@ -11,4 +11,9 @@ public class SiteController {
         public String inicio(){
             return "index";
     }
+        
+    @GetMapping("/login")
+        public String login() {
+            return "login"; // Mostra login.html
+    }
 }

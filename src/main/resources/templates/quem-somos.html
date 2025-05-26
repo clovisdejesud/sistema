@@ -5,36 +5,39 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <!-- Favicon -->
-        <link href="./img/favicon.ico" rel="icon" type="image/x-icon">
-        <link rel="stylesheet" href="/css/estilos.css">
-
+ <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
+        <link rel="stylesheet" th:href="@{/css/estilos.css}">
 
         <!-- Opcionais || Dever de casa: pesquisar por práticas SEO na web -->
-        <meta name="keywords" content="Senac, EAD, Cursos, Online, Educação, Programação">
-        <meta name="description" content="No Senac EAD, você; encontra a melhor oferta de cursos online em educação profissional a distância do país.">
-        <meta name="author" content="Lucas Fraga">
+        <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
+        <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
+        <meta name="author" content="Clovis de Jesus">
     </head>
 <body>
 
 <!-- Títulos e subtitulos -->
-<h1>Senac EAD</h1>
+<h1>Quem Somos</h1>
 
-<!-- Navegação -->
-<a href="index.html">Home</a>
-<a href="./familia-cadastro.html">Cursos</a>
-<a href="./quem-somos.html">Quem somos</a>
-<a href="./listagem.html">Fale Conosco</a>
-<a href="https://www.ead.senac.br/" target="_blank">Site Oficial</a>
+<nav>
+        <a href="/">Página Inicial</a>
+        <a href="/familia/cadastro">Familia</a>
+        <a href="/individuo/cadastro">Individuo</a>
+        <a href="/usuario/cadastro">Usuário</a>
+        <div class="dropdown">
+            <a href="#">Consulta</a>
+                <div class="dropdown-content">
+                    <a href="/familia/lista">Listar Famílias</a>
+                    <a href="/individuo/lista">Listar Indivíduos</a>
+                </div>             
+        </div>
+    </nav>
 
 <h2>Quem Somos</h2>
 
-<img src="https://www.ead.senac.br/arquivo/api/download/publico/7433">
+<img src="#">
 
-<p>Flexibilidade de tempo, espaço e dinheiro tornou a educação a distância uma opção viável e eficiente para quem pensa em investir no aprimoramento acadêmico e profissional. O uso de ferramentas e metodologias mais dinâmicas também são atrativos do EAD, que conta com 9 milhões de matriculados, de acordo com a Associação Brasileira de Educação a Distância (Abed).</p>
-<p>Comprometido em proporcionar a melhor experiência aos alunos, o Senac vai além das características comuns do setor, oferecendo o melhor ensino a distância do país. Entre seus diferenciais, está a ampla oferta em diversos níveis de ensino e áreas de conhecimento. São mais de 380 opções em cursos livres, técnicos, graduações, pós-graduações e extensões universitárias, fazendo com que você possa construir uma trajetória de formação e sucesso.</p>
-<p>Para atividades presenciais obrigatórias, a instituição conta com mais de 380 polos credenciados, distribuídos em todos os Estados do país. Já no ambiente digital, a WebTV Senac enriquece a experiência, aproximando o relacionamento entre aluno e docente com aulas em vídeo.</p>
-<p>Instrutores com experiência de mercado também garantem referências atualizadas e atividades práticas, deixando você preparado para enfrentar os desafios em sua área de atuação. Tudo isso aliado ao reconhecimento e credibilidade do Senac, que já na década de 1940 promovia o ensino a distância por meio de seus cursos na Universidade do Ar, uma ação pioneira que na época levou conhecimento profissional a locais distantes por meio de programas de rádio.</p>
+<p>xxxxxxxxxxxxxxxxx</p>
 
 </body>
 </html>
