@@ -49,16 +49,20 @@ public class Usuario {
         this.id = id;
     }
     
-    public String getEmail(){
-        return email;
-    }
-    
-    public String getSenha() {
-        return senha;
-    }
-    
     public void setSenha(String senha){
         this.senha = senha;
     }
     
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getSenha() {
+            return this.senha;
+    }
+
+    public Role getRole() {
+        return this.role;
+    }
+   
 }

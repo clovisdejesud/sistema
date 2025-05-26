@@ -25,7 +25,8 @@ public class UsuarioDetailsService implements UserDetailsService{
             throw new UsernameNotFoundException("Usuário não encontrado");
         }
 
-        return new User(usuario.getEmail(), usuario.getSenha(), Collections.emptyList());
+        String role = "ROLE_" + usuario.getRole().name();
+        return new User(usuario.getEmail(), usuario.getSenha(), Collections.singleton(() -> role));
     }
             
             }

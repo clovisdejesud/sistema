@@ -20,18 +20,25 @@
 <h1>Quem Somos</h1>
 
 <nav>
-        <a href="/">Página Inicial</a>
-        <a href="/familia/cadastro">Familia</a>
-        <a href="/individuo/cadastro">Individuo</a>
-        <a href="/usuario/cadastro">Usuário</a>
-        <div class="dropdown">
-            <a href="#">Consulta</a>
+            <a href="/">Página Inicial</a>
+            <a href="/familia/cadastro">Familia</a>
+            
+            <div sec:authorize="hasRole('Administrador', 'Usuario')">
+                <a href="/individuo/cadastro">Individuo</a>
+            </div>
+            
+            <div sec:authorize="hasRole('Administrador')">
+                <a href="/usuario/cadastro">Usuário</a>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#">Consulta</a>
                 <div class="dropdown-content">
                     <a href="/familia/lista">Listar Famílias</a>
                     <a href="/individuo/lista">Listar Indivíduos</a>
                 </div>             
-        </div>
-    </nav>
+            </div>
+        </nav>
 
 <h2>Quem Somos</h2>
 

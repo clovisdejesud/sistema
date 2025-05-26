@@ -37,6 +37,18 @@ nav li {
     margin-right: 15px;
 }
 
+.cabecalho-login {
+    height: 100px;
+    background-color: #FE7743;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /*Estilo para dropdown*/
 .dropdown {
     position: relative;
@@ -69,6 +81,7 @@ nav li {
  }
  
  .conteudo-centralizado{
+     margin-top: 40px;
      background-color: #EFEEEA;
      text-align: center;
      padding: 20px;

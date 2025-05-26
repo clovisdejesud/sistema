@@ -15,25 +15,13 @@
         <meta name="author" content="Clovis de Jesus">
     </head>
     <body>
-        !-- Navegação -->
-        <nav>
-            <a href="/">Página Inicial</a>
-            <a href="/familia/cadastro">Familia</a>
-            <a href="/individuo/cadastro">Individuo</a>
-            <a href="/usuario/cadastro">Usuário</a>
-            <div class="dropdown">
-                <a href="#">Consulta</a>
-                <div class="dropdown-content">
-                    <a href="/familia/lista">Listar Famílias</a>
-                    <a href="/individuo/lista">Listar Indivíduos</a>
-                </div>             
+        <div class="cabecalho-login">
+            Centro Espírita Luiz Monteiro            
             </div>
-        </nav>
-
+               
         <div class="conteudo-centralizado">
-        <div class="conteudo-centralizado">
-            <h1>Login no Sitema de Cadastramento</h1>
-        </div>
+            <h1>Login no Sistema de Cadastramento</h1>
+        
         <section class="form-cad">
             <form th:action="@{/login}" method="post" class="formulario">
                 <label>Email</label>
@@ -53,5 +41,6 @@
                 </div>
             </form>
         </section>
+        </div>
     </body>
 </html>
