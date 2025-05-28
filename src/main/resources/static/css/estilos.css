@@ -21,11 +21,51 @@ nav{
     text-align: center;
 }
 
-nav a{
-    text-decoration: none;
-    padding: 0 10px;
+.menu-nav {
+   display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #FE7743;
+    padding: 10px 20px;
+    overflow: visible;
+}
+
+.menu-item {
+    position: relative;  /* necessário para dropdown funcionar */
+    display: flex;
+    align-items: center;
+}
+
+.menu-item > a {
     color: white;
-    
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+
+.menu-nav > div > a,
+.menu-nav > .dropdown > a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.menu-nav a {
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+/* Garante que divs dentro do nav se comportem como itens flex */
+.menu-nav > div {
+    display: flex;
+    align-items: center;
 }
 
 nav a:hover {
@@ -36,6 +76,8 @@ nav li {
     display: inline-block;
     margin-right: 15px;
 }
+
+
 
 .cabecalho-login {
     height: 100px;
@@ -52,26 +94,33 @@ nav li {
 /*Estilo para dropdown*/
 .dropdown {
     position: relative;
-    display: inline-block;
-}
+    }
 
 .dropdown-content {
+    color: black;
     display: none;
     position: absolute;
-    background-color: #000000;
-    min-width: 160px;
-    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-    z-index: 1;
+    top: 100%;
+    left: 0;
+    background-color: #FE7743;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    width: 260px;
+    z-index: 100;
+    
  }
  
  .dropdown-content a {
-     display: block;
-     padding: 10px;
-     color: white;
+    color: black;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
  }
  
+ .dropdown-content a:hover {
+     background-color: #ddd;
+ }
  .dropdown:hover .dropdown-content {
-     background-color: #333333;
+    
      display: block;
  }
  
@@ -185,4 +234,4 @@ table thead th {
     text-align: left;
     font-weight: bold;
     
-}
+} 

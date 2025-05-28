@@ -16,29 +16,27 @@
         <meta name="author" content="Clovis de Jesus">
     </head>
 <body>
-
-
-
 <!-- Navegação -->
-    <nav>
-            <a href="/">Página Inicial</a>
-            <a href="/familia/cadastro">Familia</a>
+        <nav class="menu-nav">
+           
+                <a href="/">Página Inicial</a>
+                <a href="/familia/cadastro">Familia</a>
+                
+                <sec:authorize access="hasAnyRole('Administrador','Usuario')">
+                    <a th:href="@{/individuo/cadastro}">Individuo</a>
+                </sec:authorize>
+
+                <sec:authorize access="hasRole('Administrador')">
+                    <a th:href="@{/usuario/cadastro}">Usuário</a>
+                </sec:authorize>
             
-            <div sec:authorize="hasRole('Administrador', 'Usuario')">
-                <a href="/individuo/cadastro">Individuo</a>
-            </div>
-            
-            <div sec:authorize="hasRole('Administrador')">
-                <a href="/usuario/cadastro">Usuário</a>
-            </div>
-            
-            <div class="dropdown">
-                <a href="#">Consulta</a>
-                <div class="dropdown-content">
-                    <a href="/familia/lista">Listar Famílias</a>
-                    <a href="/individuo/lista">Listar Indivíduos</a>
-                </div>             
-            </div>
+                <div class="menu-item dropdown">
+                    <a href="#">Consulta</a>
+                    <div class="dropdown-content">
+                        <a href="/familia/lista">Listar Famílias</a>
+                        <a href="/individuo/lista">Listar Indivíduos</a>
+                    </div>             
+                </div>         
         </nav>
     
     <div class="conteudo-centralizado">
