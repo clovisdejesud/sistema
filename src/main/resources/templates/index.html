@@ -51,5 +51,23 @@
             </section>
         </div>
 
+        <div id="popup403" class="popup" style="display:none;">
+            <div class="popup-content">
+                <p>Você não tem permissão para acessar!</p>
+                <button onclick="fecharPopup()" class="btn-popup">OK</button>
+            </div>
+        </div>
+        <script>
+    
+            // Detecta parâmetro de erro na URL
+            if (window.location.search.includes('erro=403')) {
+                document.getElementById('popup403').style.display = 'block';
+            }
+
+            function fecharPopup() {
+                document.getElementById('popup403').style.display = 'none';
+                    window.location.href = '/'; // Volta para a home limpa
+            }
+        </script>
 </body>
 </html>

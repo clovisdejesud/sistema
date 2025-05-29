@@ -1,6 +1,7 @@
 package com.senac.sistema.config;
 
 import com.senac.sistema.config.UsuarioDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -11,6 +12,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 public class SecurityConfig {
+    
+    @Autowired
+    private CustomAccessDeniedHandler accessDeniedHandler;
+
 
     // Codificador de senha
     @Bean
@@ -57,7 +62,12 @@ public class SecurityConfig {
         .logout(logout -> logout
             .logoutSuccessUrl("/login?logout")
             .permitAll()
+        )
+    
+        .exceptionHandling(exception -> exception
+            .accessDeniedHandler(accessDeniedHandler)
         );
+
         return http.build();
     }
 }

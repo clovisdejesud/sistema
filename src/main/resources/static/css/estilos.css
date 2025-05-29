@@ -94,6 +94,7 @@ nav li {
 /*Estilo para dropdown*/
 .dropdown {
     position: relative;
+    display: inline-block;
     }
 
 .dropdown-content {
@@ -235,3 +236,44 @@ table thead th {
     font-weight: bold;
     
 } 
+
+/*Estipo popup*/
+.btn-popup {
+    top: 10px;
+    color: white;
+    background: red;
+    width: 30px; height: 30px;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.popup {
+    position: fixed;
+    width: 300px;
+    height: auto;
+    top: 50%;/* posiciona verticalmente no meio */
+    left: 50%;  /* posiciona horizontalmente no meio */
+    transform: translate(-50%, -50%); /* corrige o deslocamento para centralizar */
+    background: rgba(255, 255, 153, 1); /* amarelo claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 1000;    
+}
+
+.popup-content {
+    background:  rgba(255, 255, 153, 1); /* amarelo claro */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.popup-content p {
+    margin-bottom: 15px
+}
+
