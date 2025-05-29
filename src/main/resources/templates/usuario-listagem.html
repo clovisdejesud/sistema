@@ -1,10 +1,9 @@
 <html>
     <head>
-        <title>Cadastro de Individuo</title>
+        <title>Listagem de usuários</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <!-- Favicon -->
         <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
         <link rel="stylesheet" th:href="@{/css/estilos.css}">
 
@@ -12,10 +11,9 @@
         <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
         <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
         <meta name="author" content="Clovis de Jesus">
-     
     </head>
     <body>
- <!-- Navegação -->
+        <!-- Navegação -->
         <nav class="menu-nav">
            
                 <a href="/">Página Inicial</a>
@@ -38,35 +36,31 @@
                     </div>             
                 </div>         
         </nav>
-    
-    <div class="conteudo-centralizado">
-        <h1>Cadastro de Individuo</h1> 
-    </div>
 
-    <section class="form-cad">
-        <form method="post" th:action="@{/individuo/gravar}" th:object="${individuo}" class="formulario">
+    <div class="conteudo-centralizado">
+        <!-- Títulos e subtitulos -->
+        <h1>Listagem de Usuários do Sistema</h1> 
+    </div> 
+
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Endereço</th>
+        <th>Telefone</th>
+        <th>Permissão</th>
+        <th>Email</th>
         
-            <label for="nome">Nome</label>
-            <input type="text" th:field="*{nome}" class="grande" required>
-            
-            <label for="dataNasc">Data Nasc</label>
-            <input type="date" th:field="*{dataNasc}" required>
-            
-            
-            <label for="familia">Família</label>
-            <select th:field="*{familia}">
-                <option th:each="fam : ${familias}" 
-                        th:value="${fam.id}"
-                        th:text="${fam.nomeFamilia}">
-                </option>
-            </select></p>
-            
-            <div class="form-btn-center">
-                <button type="submit" class="btn">Salvar</button>            
-            </div>
-        
-        </form>
-    </section>
-            
+    </tr>
+    <tr th:each="usuario : ${usuario}">
+        <td th:text="${usuario.id}"></td>
+        <td th:text="${usuario.nome}"></td>
+        <td th:text="${usuario.endereco}"></td>
+        <td th:text="${usuario.telefone}"></td>
+        <td th:text="${usuario.permissao}"></td>
+        <td th:text="${usuario.email}"></td>
+    </tr>
+    </table>
+
     </body>
 </html>

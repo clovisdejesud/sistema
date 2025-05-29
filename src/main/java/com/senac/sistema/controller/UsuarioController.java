@@ -63,6 +63,10 @@ public class UsuarioController {
         return "redirect:/usuario/lista";
     }
     
-    
+     @GetMapping("/lista")
+    public String lista(Model model) {
+        model.addAttribute("usuario", usuarioService.listarTodos());
+        return "usuario-listagem";
+    }
     
 }
