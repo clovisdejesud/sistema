@@ -277,3 +277,7 @@ table thead th {
     margin-bottom: 15px
 }
 
+/*Definir linhas tracejadas nas tabelas*/
+.linha-tracejada {
+    border-bottom: 1px dashed #444; /* linha tracejada cinza */
+}

@@ -59,7 +59,7 @@
         </thead>
         
         <tbody>
-            <tr th:each="familia: ${familias}">
+            <tr th:each="familia: ${familias}" class="linha-tracejada">
                 <td th:text="${familia.id}"></td>
                 <td th:text="${familia.nomeFamilia}"></td>
                 <td th:text="${familia.nrIndividuos}"></td>

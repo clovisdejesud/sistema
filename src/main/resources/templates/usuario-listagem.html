@@ -52,19 +52,19 @@
             <th>Email</th>
 
         </tr>
-    <th:block th:each="usuario : ${usuario}">
-        <th:block th:if="${usuario.nome != null and !#strings.isEmpty(usuario.nome)}">
-            <tr>
-            
-                <td th:text="${usuario.id}"></td>
-                <td th:text="${usuario.nome}"></td>
-                <td th:text="${usuario.endereco}"></td>
-                <td th:text="${usuario.telefone}"></td>
-                <td th:text="${usuario.permissao}"></td>
-                <td th:text="${usuario.email}"></td>
-            </tr>
-        </th:block>
-    </th:block>    
+        <tr th:each="item : ${usuario}"
+            th:if="${item.nome != null and !#strings.isEmpty(item.nome)}"
+                class="linha-tracejada">
+
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.nome}"></td>
+                <td th:text="${item.endereco}"></td>
+                <td th:text="${item.telefone}"></td>
+                <td th:text="${item.permissao}"></td>
+                <td th:text="${item.email}"></td>
+        </tr>
+
+ 
     </table>
 
     </body>
