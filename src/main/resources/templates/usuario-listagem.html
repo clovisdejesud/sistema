@@ -43,23 +43,28 @@
     </div> 
 
     <table>
-    <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Endereço</th>
-        <th>Telefone</th>
-        <th>Permissão</th>
-        <th>Email</th>
-        
-    </tr>
-    <tr th:each="usuario : ${usuario}">
-        <td th:text="${usuario.id}"></td>
-        <td th:text="${usuario.nome}"></td>
-        <td th:text="${usuario.endereco}"></td>
-        <td th:text="${usuario.telefone}"></td>
-        <td th:text="${usuario.permissao}"></td>
-        <td th:text="${usuario.email}"></td>
-    </tr>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th>Permissão</th>
+            <th>Email</th>
+
+        </tr>
+    <th:block th:each="usuario : ${usuario}">
+        <th:block th:if="${usuario.nome != null and !#strings.isEmpty(usuario.nome)}">
+            <tr>
+            
+                <td th:text="${usuario.id}"></td>
+                <td th:text="${usuario.nome}"></td>
+                <td th:text="${usuario.endereco}"></td>
+                <td th:text="${usuario.telefone}"></td>
+                <td th:text="${usuario.permissao}"></td>
+                <td th:text="${usuario.email}"></td>
+            </tr>
+        </th:block>
+    </th:block>    
     </table>
 
     </body>
