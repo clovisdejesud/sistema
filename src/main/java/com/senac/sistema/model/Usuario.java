@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -28,7 +30,7 @@ public class Usuario {
     
     @NotBlank
     private String telefone;
-    
+        
     @NotBlank
     private String permissao;
     
@@ -64,5 +66,9 @@ public class Usuario {
     public Role getRole() {
         return this.role;
     }
+    
+    @OneToOne(optional = false) // todo usuário precisa estar vinculado a um colaborador
+    @JoinColumn(name = "colaborador_id", nullable = false, unique = true)
+    private Colaborador colaborador;
    
 }
