@@ -9,28 +9,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
 @Entity
-@Component
+@Table(name="usuario")
 public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @NotBlank
-    private String nome;
-    
-    @NotBlank
-    private String endereco;
-    
-    @NotBlank
-    private String telefone;
-        
+           
     @NotBlank
     private String permissao;
     

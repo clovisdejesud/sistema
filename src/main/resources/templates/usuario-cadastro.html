@@ -49,15 +49,6 @@
         </div>
         <form method="post" th:action="@{/usuario/gravar}" th:object="${usuario}" class="formulario">
             
-            <label for="nome">Nome do Usuário</label>
-            <input type="text" th:field="*{nome}" class="grande" required>
-            
-            <label for="endereco">Endereço</label>
-            <input type="text" th:field="*{endereco}" class="grande" required>
-            
-            <label for="telefone">Telefone</label>
-            <input type="text" th:field="*{telefone}" required>
-
             <label for="role">Permissão</label>
             <select th:field="*{role}">
                 <option th:each="p : ${papeis}" th:value="${p}" th:text="${p}"></option>
