@@ -13,7 +13,7 @@ public class ColaboradorService {
     private ColaboradorRepository colaboradorRepository;
     
    
-    public Colaborador salvarUsuario(Colaborador colaborador){
+    public Colaborador salvarColaborador(Colaborador colaborador){
         return colaboradorRepository.save(colaborador);
     }
     

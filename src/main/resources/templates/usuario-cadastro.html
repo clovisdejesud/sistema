@@ -60,6 +60,15 @@
             <label for="senha">Senha</label>
             <input type="password" th:field="*{senha}" required>
             
+            <label for="colaborador">Colaborador</label>
+            <select th:field="*{colaborador}"
+                    <option value="" disabled selected>Selecione um colaborador</option>
+                <option th:each="colab : ${colaboradores}"
+                        th:value="${colab.id}"
+                        th:text="${colab.nome}">
+                </option>
+            </select>
+            
             <div th:if="${param.sucesso}" style="color: green;">Usuário cadastrado com sucesso!
             </div>
         

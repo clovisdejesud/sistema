@@ -52,16 +52,13 @@
             <th>Email</th>
 
         </tr>
-        <tr th:each="item : ${usuario}"
-            th:if="${item.nome != null and !#strings.isEmpty(item.nome)}"
-                class="linha-tracejada">
-
-                <td th:text="${item.id}"></td>
-                <td th:text="${item.nome}"></td>
-                <td th:text="${item.endereco}"></td>
-                <td th:text="${item.telefone}"></td>
-                <td th:text="${item.role}"></td>
-                <td th:text="${item.email}"></td>
+        <tr th:each="user : ${usuario}" th:if="${user.colaborador != null}">
+            <td th:text="${user.id}"></td>        
+                <td th:text="${user.colaborador.nome}"></td>
+                <td th:text="${user.colaborador.endereco}"></td>
+                <td th:text="${user.colaborador.telefone}"></td>
+		<td th:text="${user.role}"></td>
+       		<td th:text="${user.email}"></td>
         </tr>
 
  
