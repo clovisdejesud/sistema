@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+
+<html>
     <head>
-        <title>Senac EAD</title>
+        <title>Cadastro de Colaborador</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
- <!-- Favicon -->
+        <!-- Favicon -->
         <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
         <link rel="stylesheet" th:href="@{/css/estilos.css}">
 
@@ -14,12 +15,9 @@
         <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
         <meta name="author" content="Clovis de Jesus">
     </head>
-<body>
-
-<!-- Títulos e subtitulos -->
-<h1>Quem Somos</h1>
-
-<nav class="menu-nav">
+    <body>
+           <!-- Navegação -->
+           <nav class="menu-nav">
             <a href="/">Página Inicial</a>
             <a href="/familia/cadastro">Familia</a>
             
@@ -45,12 +43,31 @@
                 </div>             
             </div>
         </nav>
-
-<h2>Quem Somos</h2>
-
-<img src="#">
-
-<p>xxxxxxxxxxxxxxxxx</p>
-
-</body>
+                     
+            <div class="conteudo-centralizado">
+                <h1>Cadastro de Colaboradores</h1>
+            </div>
+    
+    <section class="form-cad">
+        <form method="post" th:action="@{/colaborador/gravar}" class="formulario">
+            
+            <label for="nome">Nome</label>
+            <input type="text" th:field="${colaborador.nome}" class="grande" required>
+            
+            <label for="endereco">Endereço</label>
+            <input type="text" th:field="${colaborador.endereco}" class="grande" required>
+            
+            <label for="telefone">Contato</label>
+            <input type="tel" th:field="${colaborador.telefone}" required>
+            
+            <label for="email">Email</label>
+            <input type="email" th:field="${colaborador.email}" required>
+            
+            <div class="form-btn-center">
+                <button type="submit" class="btn">Salvar</button>
+            </div>
+        </form>
+    </section>
+                  
+    </body>
 </html>

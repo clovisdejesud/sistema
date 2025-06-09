@@ -1,21 +1,22 @@
+
 <html>
     <head>
-        <title>Cadastro de Individuo</title>
+       <title>Sistema de Cadastramento</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
-        <link rel="stylesheet" th:href="@{/css/estilos.css}">
+        <link href="./img/favicon.ico" rel="icon" type="image/x-icon">
+        <link rel="stylesheet" href="/css/estilos.css">
+
 
         <!-- Opcionais || Dever de casa: pesquisar por práticas SEO na web -->
-        <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
+         <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
         <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
         <meta name="author" content="Clovis de Jesus">
-     
     </head>
     <body>
- <!-- Navegação -->
+        <!-- Navegação -->
         <nav class="menu-nav">
            
                 <a href="/">Página Inicial</a>
@@ -38,40 +39,47 @@
                     <div class="dropdown-content">
                         <a href="/familia/lista">Listar Famílias</a>
                         <a href="/individuo/lista">Listar Indivíduos</a>
-                        <a href="/colaborador/lista">Listar Colaboradores</a>
                         <a href="/usuario/lista">Listar Usuários</a>
                     </div>             
                 </div>         
         </nav>
     
     <div class="conteudo-centralizado">
-        <h1>Cadastro de Individuo</h1> 
+        <!-- Títulos e subtitulos-->
+        <h1>Listagem de Colaboradores</h1>
     </div>
-
-    <section class="form-cad">
-        <form method="post" th:action="@{/individuo/gravar}" th:object="${individuo}" class="formulario">
+    
+    <section class="fundo-claro">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Endereço</th>
+                <th>Contato</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
         
-            <label for="nome">Nome</label>
-            <input type="text" th:field="*{nome}" class="grande" required>
+        <tbody>
+            <tr th:each="colaborador: ${colaborador}" class="linha-tracejada">
+                <td th:text="${colaborador.id}"></td>
+                <td th:text="${colaborador.nome}"></td>
+                <td th:text="${colaborador.endereco}"></td>
+                <td th:text="${colaborador.telefone}"></td>
+                <td th:text="${colaborador.email}"></td>
+                <td>
+                    <a th:href="@{'/colaborador/alterar/' + ${colaborador.id}}">Alterar</a>
+                    <a th:href="@{'/colaborador/excluir/' + ${colaborador.id}}"
+   th:onclick="'return confirm(\'Deseja excluir o ID ' + ${colaborador.id} + '?\')'">
+   Excluir
+                    </a>
+                </td>
+            </tr>
             
-            <label for="dataNasc">Data Nasc</label>
-            <input type="date" th:field="*{dataNasc}" required>
-            
-            
-            <label for="familia">Família</label>
-            <select th:field="*{familia}">
-                <option th:each="fam : ${familias}" 
-                        th:value="${fam.id}"
-                        th:text="${fam.nomeFamilia}">
-                </option>
-            </select></p>
-            
-            <div class="form-btn-center">
-                <button type="submit" class="btn">Salvar</button>            
-            </div>
-        
-        </form>
+        </tbody>
+    </table>
     </section>
-            
     </body>
 </html>

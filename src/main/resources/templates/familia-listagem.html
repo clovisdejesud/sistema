@@ -25,7 +25,11 @@
                 <sec:authorize access="hasAnyRole('Administrador','Usuario')">
                     <a th:href="@{/individuo/cadastro}">Individuo</a>
                 </sec:authorize>
-
+                
+                <sec:authorize access="hasAnyRole('Administrador','Colaborador')">
+                    <a th:href="@{/colaborador/cadastro}">Colaborador</a>
+                </sec:authorize>
+                
                 <sec:authorize access="hasRole('Administrador')">
                     <a th:href="@{/usuario/cadastro}">Usuário</a>
                 </sec:authorize>
@@ -35,6 +39,7 @@
                     <div class="dropdown-content">
                         <a href="/familia/lista">Listar Famílias</a>
                         <a href="/individuo/lista">Listar Indivíduos</a>
+                        <a href="/colaborador/lista">Listar Colaboradores</a>
                         <a href="/usuario/lista">Listar Usuários</a>
                     </div>             
                 </div>         
