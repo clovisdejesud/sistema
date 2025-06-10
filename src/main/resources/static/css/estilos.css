@@ -196,9 +196,12 @@ nav li {
 }
 
 .form-btn-center {
-    grid-column: span 2;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
     margin-top: 20px;
+    grid-column: span 2;
 }
 
 /*Section image*/
