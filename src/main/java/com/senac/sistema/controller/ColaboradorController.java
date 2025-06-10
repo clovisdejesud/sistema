@@ -38,13 +38,26 @@ public class ColaboradorController {
     
     @PostMapping("/gravar")
     public String processarFormulario(@ModelAttribute Colaborador colaborador, BindingResult result, Model model){
-        if(result.hasErrors()){
-            model.addAttribute("colaborador", colaboradorService.listarTodos());
-            return "colaborador-cadastro";
-        }
-          
-        colaboradorService.salvarColaborador(colaborador);
-        return "redirect:/colaborador/cadastro?sucesso";
+    if(result.hasErrors()){
+        // Se houver erros, adicione o próprio objeto 'colaborador' de volta ao modelo
+        // Isso permite que o formulário mantenha os dados que o usuário digitou
+        model.addAttribute("colaborador", colaborador);
+        // model.addAttribute("papeis", Role.values()); // <--- Remova esta linha se Colaborador não tiver Role
+        // Se 'papeis' não for usado em 'colaborador-cadastro.html' para um Colaborador, remova esta linha.
+        // Se 'Role' for usada no Colaborador, mantenha e importe.
+        return "colaborador-cadastro"; // Retorna para a mesma página do formulário
+    }
+
+    // Não há codificação de senha para Colaborador. Apenas salve.
+    colaboradorService.salvarColaborador(colaborador); // O save() do JPA lida com persistência (ID nulo) e merge (ID existente)
+
+    // Após salvar, redirecione para a lista para que o usuário veja a alteração.
+    // Ou, se for cadastro, redirecione para o formulário de cadastro com sucesso.
+    if (colaborador.getId() != null) { // Se tem ID, é uma alteração
+        return "redirect:/colaborador/lista?sucessoAlteracao";
+    } else { // Se não tem ID, é um novo cadastro
+        return "redirect:/colaborador/cadastro?sucessoCadastro";
+    }
     }
     
     @GetMapping("/alterar/{id}")

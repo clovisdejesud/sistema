@@ -54,19 +54,20 @@
             </div>
     
     <section class="form-cad">
-        <form method="post" th:action="@{/familia/gravar}" class="formulario">
+        <form method="post" th:action="@{/familia/gravar}" th:object="${familia}" class="formulario">
             
+            <input type="hidden" th:field="*{id}" />
             <label for="nomeFamilia">Nome Família</label>
-            <input type="text" th:field="${familia.nomeFamilia}" class="grande" required>
+            <input type="text" th:field="*{nomeFamilia}" class="grande" required>
             
             <label for="nrIndividuo">Nr. de Indivíduos</label>
-            <input type="number" th:field="${familia.nrIndividuos}" required>
+            <input type="number" th:field="*{nrIndividuos}" required>
             
             <label for="endereco">Endereço</label>
-            <input type="text" th:field="${familia.endereco}" class="grande" required>
+            <input type="text" th:field="*{endereco}" class="grande" required>
             
             <label for="responsavel">Responsável</label>
-            <input type="text" th:field="${familia.responsavel}" required>
+            <input type="text" th:field="*{responsavel}" required>
         
             <div class="form-btn-center">
                 <button type="submit" class="btn">Salvar</button>

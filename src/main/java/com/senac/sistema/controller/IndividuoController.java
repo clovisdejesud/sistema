@@ -34,11 +34,16 @@ public class IndividuoController {
     @PostMapping("/gravar")
     public String processarFormulario(@ModelAttribute Individuo individuo, BindingResult result, Model model){
         if(result.hasErrors()){
-            model.addAttribute("familias", familiaService.listarTodos());
+            model.addAttribute("individuos", individuoService.listarTodos());
             return "individuo-cadastro";
         }
         individuoService.salvar(individuo);
-        return "redirect:/individuo/lista";
+        
+        if(individuo.getId() != null){
+            return "redirect:/individuo/lista";
+        }else {
+            return "redirect:/individuo/cadastro?sucessoCadastro";
+        }
        
     }
     
@@ -50,6 +55,7 @@ public class IndividuoController {
         
     @GetMapping("/alterar/{id}")
     public String alterar(@PathVariable Integer id, Model  model) {
+        Individuo individuo = individuoService.buscarPorId(id);
         model.addAttribute("individuo", individuoService.buscarPorId(id));
         model.addAttribute("familias", familiaService.listarTodos());
         return "individuo-cadastro";

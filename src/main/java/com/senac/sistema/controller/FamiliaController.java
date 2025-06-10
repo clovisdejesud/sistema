@@ -29,12 +29,18 @@ public class FamiliaController {
     }
     
     @PostMapping("/gravar")
-    public String processarFormulario(@ Valid @ModelAttribute Familia familia, BindingResult result){
+    public String processarFormulario(@ModelAttribute Familia familia, BindingResult result, Model model){
         if(result.hasErrors()){
+            model.addAttribute("familia", familia);
             return "familia/cadastro";
         }
-        familiaService.salvar(familia);
+        familiaService.salvarFamilia(familia);
+        
+        if (familia.getId() != null){
         return "redirect:/familia/lista";
+        } else {
+            return "redirect:/familia/cadastro?sucessoCadastro";
+        }
     }
     
     @GetMapping("/lista")

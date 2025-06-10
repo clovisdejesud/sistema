@@ -51,12 +51,14 @@
     <section class="form-cad">
         <form method="post" th:action="@{/individuo/gravar}" th:object="${individuo}" class="formulario">
         
+            <input type="hidden" th:field="*{id}" />
             <label for="nome">Nome</label>
             <input type="text" th:field="*{nome}" class="grande" required>
             
             <label for="dataNasc">Data Nasc</label>
-            <input type="date" th:field="*{dataNasc}" required>
-            
+            <input type="date" name="dataNasc"
+                   th:value="${individuo.dataNasc != null} ? ${#temporals.format(individuo.dataNasc, 'yyyy-MM-dd')} : ''"
+            required />
             
             <label for="familia">Família</label>
             <select th:field="*{familia}">

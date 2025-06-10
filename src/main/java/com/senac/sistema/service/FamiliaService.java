@@ -14,7 +14,7 @@ public class FamiliaService {
     private FamiliaRepository familiaRepository;
     
      
-    public Familia salvar(Familia familia){
+    public Familia salvarFamilia(Familia familia){
         return familiaRepository.save(familia);
     }
     
