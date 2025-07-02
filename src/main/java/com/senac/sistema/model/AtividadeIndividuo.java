@@ -27,11 +27,22 @@ public class AtividadeIndividuo {
     @NotBlank
     private String nomeAtividade;
     
-    @NotBlank
-    private String responsavelAtividade;
+    @ManyToOne
+    @NotNull
+    @JoinColumn(name = "colaborador_id")
+    private Colaborador responsavelAtividade;
     
     @NotBlank
     private String periodo; //manhã, tarde ou noite
+    
+    @NotNull
+    private String horaInicio;
+    
+    @NotNull
+    private String horaFim;
+    
+    @NotNull
+    private String cargaHoraria;
     
     @NotNull
     @Temporal(TemporalType.DATE)
@@ -40,8 +51,7 @@ public class AtividadeIndividuo {
     @Temporal(TemporalType.DATE)
     private Date dataTermino;
     
-    @ManyToOne
-    @JoinColumn(name = "individuo_id")
-    private Individuo individuo; // um indivíduo pode estar vinculado ou não
+    @NotNull
+    private String objetivo;
     
 }

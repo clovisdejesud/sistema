@@ -42,9 +42,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http
+        .headers(headers -> headers
+                .xssProtection(xss -> xss.disable()) //Remove o cabeçalho aqui
+
+        )
+            
         .authorizeHttpRequests(auth -> auth
-        //.requestMatchers("/css/**", "/js/**", "/img/**", "/usuario/cadastro", "/usuario/gravar", "/login", "/error").permitAll()
-            .requestMatchers("/css/**", "/js/**", "/img/**", "/login", "/error").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/login", "/error").permitAll()
           
         //Apenas Administrador
             .requestMatchers("/usuario/cadastro", "/usuario/gravar").hasRole("Administrador")
