@@ -22,12 +22,13 @@ nav{
 }
 
 .menu-nav {
-   display: flex;
+    display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     background-color: #FE7743;
     padding: 10px 20px;
     overflow: visible;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .menu-item {
@@ -40,24 +41,17 @@ nav{
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 15px;
     padding: 5px 10px;
     display: inline-block;
-}
-
-
-.menu-nav > div > a,
-.menu-nav > .dropdown > a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .menu-nav a {
     color: white !important;
     text-decoration: none;
     font-weight: bold;
+    font-size: 15px;
     padding: 5px 10px;
     display: inline-block;
 }
@@ -118,6 +112,7 @@ nav li {
     font-size: 15px;
     display: block;
     text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
  }
  
  .dropdown-content a:hover {

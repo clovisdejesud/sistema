@@ -30,6 +30,10 @@
                 <sec:authorize access="hasAnyRole('Administrador')">
                     <a th:href="@{/usuario/cadastro}">Usuário</a>
                 </sec:authorize>
+                
+                <div sec:authorize="hasAnyRole('Administrador')">
+                    <a href="/atividade/cadastro">Atividade</a>
+                </div>
             
                 <div class="menu-item dropdown">
                     <a href="#">Consulta</a>
@@ -37,7 +41,6 @@
                         <a href="/familia/lista">Listar Famílias</a>
                         <a href="/individuo/lista">Listar Indivíduos</a>
                         <a href="/colaborador/lista">Listar Colaboradores</a>
-                        <a href="/usuario/lista">Listar Usuários</a>
                     </div>             
                 </div>         
         </nav>
