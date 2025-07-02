@@ -34,7 +34,7 @@
                     <a th:href="@{/colaborador/cadastro}">Colaborador</a>
                 </sec:authorize>
                 
-                <sec:authorize access="hasRole('Administrador')">
+                <sec:authorize access="hasAnyRole('Administrador')">
                     <a th:href="@{/usuario/cadastro}">Usuário</a>
                 </sec:authorize>
             

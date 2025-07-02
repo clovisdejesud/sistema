@@ -1,6 +1,8 @@
+<!DOCTYPE html>
+
 <html>
     <head>
-        <title>Cadastro de Individuo</title>
+        <title>Cadastro de Colaborador</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -14,8 +16,8 @@
         <meta name="author" content="Clovis de Jesus">
     </head>
     <body>
-            <!-- Navegação -->
-            <nav class="menu-nav">
+           <!-- Navegação -->
+           <nav class="menu-nav">
             <a href="/">Página Inicial</a>
             <a href="/familia/cadastro">Familia</a>
             
@@ -41,48 +43,46 @@
                 </div>             
             </div>
         </nav>
-    
+                     
             <div class="conteudo-centralizado">
-                <h1>Cadastro de Usuário do Sistema</h1>
+                <h1>Cadastro de Colaboradores</h1>
             </div>
     
     <section class="form-cad">
-        
-            <!-- MENSAGEM DE SUCESSO -->
-        <div th:if="${param.sucesso}" style="color: green; text-align: center; margin-bottom: 1em;">
-           Usuário cadastrado com sucesso!
-        </div>
-        <form method="post" th:action="@{/usuario/gravar}" th:object="${usuario}" class="formulario">
+        <form method="post" th:action="@{/atividade/gravar}" th:object="${atividade}" class="formulario">
             
-            <label for="role">Permissão</label>
-            <select th:field="*{role}">
-                <option th:each="p : ${papeis}" th:value="${p}" th:text="${p}"></option>
-            </select>
+            <input type="hidden" th:field="*{id}" />
+            <label for="nomeAtividade">Nome</label>
+            <input type="text" th:field="*{nomeAtividade}" class="grande" required>
             
-            <label for="email">Email</label>
-            <input type="email" th:field="*{email}" required>
+            <label for="responsavelAtividade">Responsável</label>
+            <input type="text" th:field="*{responsavelAtividade}" class="grande" required>
             
-            <label for="senha">Senha</label>
-            <input type="password" th:field="*{senha}" required>
+            <label for="periodo">Periodo</label>
+            <input type="??" th:field="*{periodo}" required>
             
-            <label for="colaborador">Colaborador</label>
-            <select th:field="*{colaborador}"
-                    <option value="" disabled selected>Selecione um colaborador</option>
-                <option th:each="colab : ${colaboradores}"
-                        th:value="${colab.id}"
-                        th:text="${colab.nome}">
-                </option>
-            </select>
+            <label for="horaInicio">Hora início</label>
+            <input type="time" th:field="*{horaInicio}" required>
             
-            <div th:if="${param.sucesso}" style="color: green;">Usuário cadastrado com sucesso!
-            </div>
-        
+            <label for="horaFim">Hora término</label>
+            <input type="time" th:field="*{horaFim}" required>
+            
+            <label for="cargaHoraria">Carga horária</label>
+            <input type="text" th:field="*{cargaHoraria}" required>
+            
+            <label for="dataInicio">Data início</label>
+            <input type="date" th:field="*{dataInicio}" required>
+            
+            <label for="dataTermino">Data término</label>
+            <input type="date" th:field="*{horaInicio}">
+            
+            <label for="objetivo">Objetivo</label>
+            <input type="text" th:field="*{objetivo}" required>
+            
             <div class="form-btn-center">
                 <button type="submit" class="btn">Salvar</button>
             </div>
-            
         </form>
     </section>
-
-    </body>
+       
 </html>

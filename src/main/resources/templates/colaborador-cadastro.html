@@ -29,7 +29,7 @@
                 <a href="/colaborador/cadastro">Colaborador</a>
             </div>
             
-            <div sec:authorize="hasRole('Administrador')">
+            <div sec:authorize="hasAnyRole('Administrador')">
                 <a href="/usuario/cadastro">Usuário</a>
             </div>
             

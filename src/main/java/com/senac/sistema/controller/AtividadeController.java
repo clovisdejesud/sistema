@@ -30,7 +30,7 @@ public class AtividadeController {
     public String processarFormulario(@ModelAttribute Atividade atividade, BindingResult result, Model model){
         if(result.hasErrors()){
             model.addAttribute("atividade", atividade);
-            return "atividade/cadastro";
+            return "atividade-cadastro";
         }
         atividadeService.salvarAtividade(atividade);
         
