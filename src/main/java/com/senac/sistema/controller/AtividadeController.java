@@ -1,8 +1,8 @@
 
 package com.senac.sistema.controller;
 
-import com.senac.sistema.model.Familia;
-import com.senac.sistema.service.FamiliaService;
+import com.senac.sistema.model.Atividade;
+import com.senac.sistema.service.AtividadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,50 +14,48 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/familia")
-public class FamiliaController {
-    
-    @Autowired
-    private FamiliaService familiaService;
+@RequestMapping("/atividade")
+public class AtividadeController {
+     @Autowired
+    private AtividadeService atividadeService;
     
        
     @GetMapping("/cadastro")
     public String exibirFormulario(Model model) {
-        model.addAttribute("familia", new Familia());
-        return "familia-cadastro";
+        model.addAttribute("atividade", new Atividade());
+        return "atividade-cadastro";
     }
     
     @PostMapping("/gravar")
-    public String processarFormulario(@ModelAttribute Familia familia, BindingResult result, Model model){
+    public String processarFormulario(@ModelAttribute Atividade atividade, BindingResult result, Model model){
         if(result.hasErrors()){
-            model.addAttribute("familia", familia);
-            return "familia/cadastro";
+            model.addAttribute("atividade", atividade);
+            return "atividade/cadastro";
         }
-        familiaService.salvarFamilia(familia);
+        atividadeService.salvarAtividade(atividade);
         
-        if (familia.getId() != null){
-        return "redirect:/familia/lista";
+        if (atividade.getId() != null){
+        return "redirect:/atividade/lista";
         } else {
-            return "redirect:/familia/cadastro?sucessoCadastro";
+            return "redirect:/atividade/cadastro?sucessoCadastro";
         }
     }
     
     @GetMapping("/lista")
     public String lista(Model model) {
-        model.addAttribute("familias", familiaService.listarTodos());
-        return "familia-listagem";
+        model.addAttribute("atividade", atividadeService.listarTodos());
+        return "atividade-listagem";
     }
         
     @GetMapping("/alterar/{id}")
     public String alterar(@PathVariable Integer id, Model  model) {
-        model.addAttribute("familia", familiaService.buscarPorId(id));
-        return "familia-cadastro";
+        model.addAttribute("atividade", atividadeService.buscarPorId(id));
+        return "atividade-cadastro";
     }
     
    @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable Integer id) {
-        familiaService.excluir(id);
-        return "redirect:/familia/lista";
+        atividadeService.excluir(id);
+        return "redirect:/atividade/lista";
     }
-
 }

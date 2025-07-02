@@ -38,7 +38,7 @@ public class Colaborador {
     
     @ManyToOne
     @JoinColumn(name = "atividadeIndividuo_id")
-    private AtividadeIndividuo atividadeIndividuo;
+    private Atividade atividadeIndividuo;
     
     public Integer getId(){
         return this.id;
