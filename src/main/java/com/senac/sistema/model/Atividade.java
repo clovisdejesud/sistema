@@ -5,19 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="atividadeIndividuo")
+@Table(name="atividade")
 public class Atividade {
     
     @Id
@@ -27,31 +24,24 @@ public class Atividade {
     @NotBlank
     private String nomeAtividade;
     
-    @ManyToOne
-    @NotNull
-    @JoinColumn(name = "colaborador_id")
-    private Colaborador responsavelAtividade;
-    
     @NotBlank
     private String periodo; //manhã, tarde ou noite
     
     @NotNull
-    private String horaInicio;
+    private LocalTime horaInicio;
     
     @NotNull
-    private String horaFim;
+    private LocalTime horaFim;
     
     @NotNull
     private String cargaHoraria;
     
     @NotNull
-    @Temporal(TemporalType.DATE)
-    private Date dataInicio;
+    private LocalDate dataInicio;
     
-    @Temporal(TemporalType.DATE)
-    private Date dataTermino;
+    private LocalDate dataTermino;
     
-    @NotNull
+    @NotBlank
     private String objetivo;
     
 }

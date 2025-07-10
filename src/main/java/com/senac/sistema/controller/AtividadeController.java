@@ -35,7 +35,7 @@ public class AtividadeController {
         atividadeService.salvarAtividade(atividade);
         
         if (atividade.getId() != null){
-        return "redirect:/atividade/lista";
+        return "redirect:/atividade/lista?sucessoAlteracao";
         } else {
             return "redirect:/atividade/cadastro?sucessoCadastro";
         }

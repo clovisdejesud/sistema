@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>Cadastro de Colaborador</title>
+        <title>Cadastro de Atividade</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -55,11 +55,13 @@
             <label for="nomeAtividade">Nome</label>
             <input type="text" th:field="*{nomeAtividade}" class="grande" required>
             
-            <label for="responsavelAtividade">Responsável</label>
-            <input type="text" th:field="*{responsavelAtividade}" class="grande" required>
-            
             <label for="periodo">Periodo</label>
-            <input type="??" th:field="*{periodo}" required>
+            <select id="periodo" th:field="*{periodo}" required>
+                <option value="">Selecione</option>
+                <option value="MATUTINO">Matutino</option>
+                <option value="VESPERTINO">Verpertino</option>
+                <option value="NOTURNO">Noturno</option>
+            </select>
             
             <label for="horaInicio">Hora início</label>
             <input type="time" th:field="*{horaInicio}" required>
@@ -74,7 +76,7 @@
             <input type="date" th:field="*{dataInicio}" required>
             
             <label for="dataTermino">Data término</label>
-            <input type="date" th:field="*{horaInicio}">
+            <input type="date" th:field="*{dataTermino}">
             
             <label for="objetivo">Objetivo</label>
             <input type="text" th:field="*{objetivo}" required>

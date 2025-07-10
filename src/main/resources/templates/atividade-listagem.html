@@ -59,25 +59,32 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nome</th>
-                <th>Endereço</th>
-                <th>Contato</th>
-                <th>Email</th>
-                <th>Ações</th>
+                <th>Atividade</th>
+                <th>Período</th>
+                <th>Hora Início</th>
+                <th>Hora Término</th>
+                <th>Carga Horária</th>
+                <th>Data Início</th>
+                <th>Data Término</th>
+                <th>Objetivo</th>
             </tr>
         </thead>
         
         <tbody>
-            <tr th:each="colaborador: ${colaborador}" class="linha-tracejada">
-                <td th:text="${colaborador.id}"></td>
-                <td th:text="${colaborador.nome}"></td>
-                <td th:text="${colaborador.endereco}"></td>
-                <td th:text="${colaborador.telefone}"></td>
-                <td th:text="${colaborador.email}"></td>
+            <tr th:each="atividade: ${atividade}" class="linha-tracejada">
+                <td th:text="${atividade.id}"></td>
+                <td th:text="${atividade.nomeAtividade}"></td>
+                <td th:text="${atividade.periodo}"></td>
+                <td th:text="${atividade.horaInicio}"></td>
+                <td th:text="${atividade.horaFim}"></td>
+                <td th:text="${atividade.cargaHoraria}"></td>
+                <td th:text="${atividade.dataInicio}"></td>
+                <td th:text="${atividade.dataTermino}"></td>
+                <td th:text="${atividade.objetivo}"></td>
                 <td>
-                    <a th:href="@{'/colaborador/alterar/' + ${colaborador.id}}">Alterar</a>
-                    <a th:href="@{'/colaborador/excluir/' + ${colaborador.id}}"
-   th:onclick="'return confirm(\'Deseja excluir o ID ' + ${colaborador.id} + '?\')'">
+                    <a th:href="@{'/atividade/alterar/' + ${atividade.id}}">Alterar</a>
+                    <a th:href="@{'/atividade/excluir/' + ${atividade.id}}"
+   th:onclick="'return confirm(\'Deseja excluir o ID ' + ${atividade.id} + '?\')'">
    Excluir
                     </a>
                 </td>
