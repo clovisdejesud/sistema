@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Colaboradores e Atividades</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    </head>
+<body>
+    <nav class="menu-nav">
+        <a href="/">Página Inicial</a>
+        <a href="/familia/cadastro">Familia</a>
+        <div sec:authorize="hasAnyRole('Administrador','Usuario')">
+            <a th:href="@{/individuo/cadastro}">Individuo</a>
+        </div>
+        <div sec:authorize="hasAnyRole('Administrador','Colaborador')">
+            <a th:href="@{/colaborador/cadastro}">Colaborador</a>
+        </div>
+        <div sec:authorize="hasRole('Administrador')">
+            <a th:href="@{/usuario/cadastro}">Usuário</a>
+        </div>
+        <div sec:authorize="hasAnyRole('Administrador')">
+            <a href="/atividade/cadastro">Atividade</a>
+            <a th:href="@{/atividade/atividade-colaborador}">Vinculo Atividade</a>
+        </div>
+        <div class="menu-item dropdown">
+            <a href="#">Consulta</a>
+            <div class="dropdown-content">
+                <a href="/familia/lista">Listar Famílias</a>
+                <a href="/individuo/lista">Listar Indivíduos</a>
+                <a href="/colaborador/lista">Listar Colaboradores</a>
+                <a href="/usuario/lista">Listar Usuários</a>
+                <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores por Atividade</a>
+                <a th:href="@{/atividade/lista-com-participantes}">Atividades por Participantes</a>
+            </div>          
+        </div>
+    </nav>
+    
+    <div class="conteudo-centralizado">
+        <h1>Colaboradores e Suas Atividades Participantes</h1>
+    </div>
+
+    <section class="fundo-claro">
+        <div th:if="${#lists.isEmpty(colaboradores)}" class="mensagem-info">
+            <p>Nenhum colaborador encontrado ou registrado em atividades.</p>
+        </div>
+        <table th:unless="${#lists.isEmpty(colaboradores)}" class="tabela-listagem">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Colaborador</th>
+                    <th>Atividades Participantes</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr th:each="colaborador : ${colaboradores}">
+                    <td th:text="${colaborador.id}">1</td>
+                    <td th:text="${colaborador.nome}">Nome do Colaborador</td>
+                    <td>
+                        <ul th:if="${!#sets.isEmpty(colaborador.atividades)}" class="lista-simples">
+                            <li th:each="atividade : ${colaborador.atividades}">
+                                <span th:text="${atividade.nomeAtividade}">Atividade Y</span> 
+                                (<span th:text="${atividade.periodo}">Manhã</span>)
+                            </li>
+                        </ul>
+                        <span th:if="${#sets.isEmpty(colaborador.atividades)}" class="texto-cinza">Nenhuma atividade associada.</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

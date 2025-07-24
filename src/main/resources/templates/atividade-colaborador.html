@@ -1,5 +1,4 @@
-
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
        <title>Sistema de Cadastramento</title>
         <meta charset="UTF-8">
@@ -16,8 +15,7 @@
         <meta name="author" content="Clovis de Jesus">
     </head>
     <body>
-        <!-- Navegação -->
-        <nav class="menu-nav">
+         <nav class="menu-nav">
            
                 <a href="/">Página Inicial</a>
                 <a href="/familia/cadastro">Familia</a>
@@ -36,58 +34,20 @@
                 
                 <div sec:authorize="hasAnyRole('Administrador')">
                     <a href="/atividade/cadastro">Atividade</a>
-                    <a th:href="@{/atividade/atividade-colaborador}">Vinculo Atividade</a>
                 </div>
             
                 <div class="menu-item dropdown">
                     <a href="#">Consulta</a>
-                   <div class="dropdown-content">
+                    <div class="dropdown-content">
                 <a href="/familia/lista">Listar Famílias</a>
                 <a href="/individuo/lista">Listar Indivíduos</a>
                 <a href="/colaborador/lista">Listar Colaboradores</a>
                 <a href="/usuario/lista">Listar Usuários</a>
                 <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores por Atividade</a>
                 <a th:href="@{/atividade/lista-com-participantes}">Atividades por Participantes</a>
-            </div>              
+            </div>               
                 </div>         
         </nav>
-    
-    <div class="conteudo-centralizado">
-        <!-- Títulos e subtitulos-->
-        <h1>Listagem de Colaboradores</h1>
-    </div>
-    
-    <section class="fundo-claro">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Endereço</th>
-                <th>Contato</th>
-                <th>Email</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            <tr th:each="colaborador: ${colaborador}" class="linha-tracejada">
-                <td th:text="${colaborador.id}"></td>
-                <td th:text="${colaborador.nome}"></td>
-                <td th:text="${colaborador.endereco}"></td>
-                <td th:text="${colaborador.telefone}"></td>
-                <td th:text="${colaborador.email}"></td>
-                <td>
-                    <a th:href="@{'/colaborador/alterar/' + ${colaborador.id}}">Alterar</a>
-                    <a th:href="@{'/colaborador/excluir/' + ${colaborador.id}}"
-   th:onclick="'return confirm(\'Deseja excluir o ID ' + ${colaborador.id} + '?\')'">
-   Excluir
-                    </a>
-                </td>
-            </tr>
-            
-        </tbody>
-    </table>
-    </section>
+        <div>TODO write content</div>
     </body>
 </html>

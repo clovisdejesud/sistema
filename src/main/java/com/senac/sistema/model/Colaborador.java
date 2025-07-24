@@ -6,10 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.Data;
 
 @Data
@@ -36,9 +39,8 @@ public class Colaborador {
     @OneToOne(mappedBy = "colaborador")
     private Usuario usuario; // nem todo colaborador será um usuário
     
-    @ManyToOne
-    @JoinColumn(name = "atividadeIndividuo_id")
-    private Atividade atividadeIndividuo;
+    @ManyToMany(mappedBy = "colaboradores")
+    private Set<Atividade> atividades = new HashSet<>();
     
     public Integer getId(){
         return this.id;

@@ -39,6 +39,7 @@
                 
                 <div sec:authorize="hasAnyRole('Administrador')">
                     <a href="/atividade/cadastro">Atividade</a>
+                    <a th:href="@{/atividade/atividade-colaborador}">Vinculo Atividade</a>
                 </div>
             
                 <div class="menu-item dropdown">

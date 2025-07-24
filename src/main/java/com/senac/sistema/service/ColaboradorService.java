@@ -27,5 +27,14 @@ public class ColaboradorService {
     
      public void excluir(int id) {
         colaboradorRepository.deleteById(id);
-    } 
+    }
+     
+    public List<Colaborador> listarTodosColaboradoresComAtividades(){
+        return colaboradorRepository.findAll();
+    }
+    
+    public Colaborador buscarColaboradorComAtividades(Integer id) {
+        return colaboradorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Colaborador não encontrado"));
+    }
 }

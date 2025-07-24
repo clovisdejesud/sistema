@@ -58,4 +58,16 @@ public class AtividadeController {
         atividadeService.excluir(id);
         return "redirect:/atividade/lista";
     }
+
+    @GetMapping("/lista-com-participantes")
+    public String listarAtividadesComParticipantes(Model model) {
+        model.addAttribute("atividades", atividadeService.listarTodasAtividadesComParticipantes());
+        return "atividade-participantes-listagem"; // Nova página Thymeleaf
+    }
+
+    @GetMapping("/detalhes/{id}")
+    public String detalhesAtividade(@PathVariable Integer id, Model model) {
+        model.addAttribute("atividade", atividadeService.buscarAtividadeComParticipantes(id));
+        return "atividade-detalhes"; // Nova página Thymeleaf
+    }
 }

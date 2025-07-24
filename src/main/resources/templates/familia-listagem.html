@@ -34,8 +34,9 @@
                     <a th:href="@{/usuario/cadastro}">Usuário</a>
                 </sec:authorize>
                                 
-                <div sec:authorize="hasAnyRole('Administrador')">
+               <div sec:authorize="hasAnyRole('Administrador')">
                     <a href="/atividade/cadastro">Atividade</a>
+                    <a th:href="@{/atividade/atividade-colaborador}">Vinculo Atividade</a>
                 </div>
             
                 <div class="menu-item dropdown">

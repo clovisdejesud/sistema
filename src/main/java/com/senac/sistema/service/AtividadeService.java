@@ -3,6 +3,7 @@ package com.senac.sistema.service;
 
 
 import com.senac.sistema.model.Atividade;
+import com.senac.sistema.model.Colaborador;
 import com.senac.sistema.repository.AtividadeRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,14 @@ public class AtividadeService {
      public void excluir(int id) {
         atividadeRepository.deleteById(id);
     }
+     
+    public List<Atividade> listarTodasAtividadesComParticipantes() {
+        return atividadeRepository.findAll();
+    }
+
+    public Atividade buscarAtividadeComParticipantes(Integer id) {
+        return atividadeRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Atividade não encontrada"));
+    }
+    
 }

@@ -5,11 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.Data;
 
 @Data
@@ -34,14 +40,34 @@ public class Atividade {
     private LocalTime horaFim;
     
     @NotNull
-    private String cargaHoraria;
+    private BigDecimal cargaHoraria;
     
     @NotNull
     private LocalDate dataInicio;
     
+    @NotNull
     private LocalDate dataTermino;
     
     @NotBlank
+    private Integer colaborador_responsavel;
+    
+    @NotBlank
     private String objetivo;
+    
+    @ManyToMany
+    @JoinTable(
+            name = "atividade_colaborador",
+            joinColumns = @JoinColumn(name = "atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "colaborador_id")
+    )
+    private Set<Colaborador> colaboradores = new HashSet<>();
+    
+    @ManyToMany
+    @JoinTable(
+            name = "atividade_individuo",
+            joinColumns = @JoinColumn(name ="atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "individuo_id")
+            )
+    private Set<Individuo> individuos = new HashSet<>();          
     
 }

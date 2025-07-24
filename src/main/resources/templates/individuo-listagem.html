@@ -35,6 +35,7 @@
                 
                 <div sec:authorize="hasAnyRole('Administrador')">
                     <a href="/atividade/cadastro">Atividade</a>
+                    <a th:href="@{/atividade/atividade-colaborador}">Vinculo Atividade</a>
                 </div>
             
                 <div class="menu-item dropdown">
@@ -43,6 +44,8 @@
                         <a href="/familia/lista">Listar Famílias</a>
                         <a href="/colaborador/lista">Listar Colaboradores</a>
                         <a href="/usuario/lista">Listar Usuários</a>
+                        <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores com Atividades</a>
+                        <a th:href="@{/atividade/lista-com-participantes}">Atividade por Participantes</a>
                     </div>             
                 </div>         
         </nav>
