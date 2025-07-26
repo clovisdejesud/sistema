@@ -2,7 +2,7 @@
 
 <html>
      <head>
-       <title>Sistema de Cadastramento</title>
+       <title>Listagem de Atividades</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -46,6 +46,7 @@
                         <a href="/familia/lista">Listar Famílias</a>
                         <a href="/individuo/lista">Listar Indivíduos</a>
                         <a href="/usuario/lista">Listar Usuários</a>
+                        <a href="/atividade/lista">Listagem de Atividades</a>
                         <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores com Atividades</a>
                         <a th:href="@{/atividade/lista-com-participantes}">Atividade por Participantes</a>
                     </div>             
@@ -86,10 +87,9 @@
                 <td th:text="${atividade.objetivo}"></td>
                 <td>
                     <a th:href="@{'/atividade/alterar/' + ${atividade.id}}">Alterar</a>
-                    <a th:href="@{'/atividade/excluir/' + ${atividade.id}}"
-   th:onclick="'return confirm(\'Deseja excluir o ID ' + ${atividade.id} + '?\')'">
-   Excluir
-                    </a>
+                    <a th:href="@{'/atividade/excluir/' + ${atividade.id}}"th:onclick="'return confirm(\'Deseja excluir o ID ' + ${atividade.id} + '?\')'">
+                        Excluir</a>
+                    <a th:href="@{/atividade/gerenciar-alocacao/{id}(id=${atividade.id})}">Alocação</a>
                 </td>
             </tr>
             

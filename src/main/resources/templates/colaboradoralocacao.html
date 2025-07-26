@@ -1,0 +1,84 @@
+    <!DOCTYPE html>    
+    <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+        <head>
+           <title>Alocação de Colaborador</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <!-- Favicon -->
+            <link href="./img/favicon.ico" rel="icon" type="image/x-icon">
+            <link rel="stylesheet" href="/css/estilos.css">
+
+
+            <!-- Opcionais || Dever de casa: pesquisar por práticas SEO na web -->
+             <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
+            <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
+            <meta name="author" content="Clovis de Jesus">
+        </head>
+        <body>
+             <nav class="menu-nav">
+
+                    <a href="/">Página Inicial</a>
+                    <a href="/familia/cadastro">Familia</a>
+
+                    <sec:authorize access="hasAnyRole('Administrador','Usuario')">
+                        <a th:href="@{/individuo/cadastro}">Individuo</a>
+                    </sec:authorize>
+
+                    <sec:authorize access="hasAnyRole('Administrador','Colaborador')">
+                        <a th:href="@{/colaborador/cadastro}">Colaborador</a>
+                    </sec:authorize>
+
+                    <sec:authorize access="hasAnyRole('Administrador')">
+                        <a th:href="@{/usuario/cadastro}">Usuário</a>
+                    </sec:authorize>
+
+                    <div sec:authorize="hasAnyRole('Administrador')">
+                        <a href="/atividade/cadastro">Atividade</a>
+                    </div>
+
+                    <div class="menu-item dropdown">
+                        <a href="#">Consulta</a>
+                        <div class="dropdown-content">
+                    <a href="/familia/lista">Listar Famílias</a>
+                    <a href="/individuo/lista">Listar Indivíduos</a>
+                    <a href="/colaborador/lista">Listar Colaboradores</a>
+                    <a href="/usuario/lista">Listar Usuários</a>
+                    <a href="/atividade/lista">Listagem de Atividades</a>
+                    <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores por Atividade</a>
+                    <a th:href="@{/atividade/lista-com-participantes}">Atividades por Participantes</a>
+                </div>               
+                    </div>         
+            </nav>
+            <h1>Vincular Atividade-Colaborador</h1>
+
+            <section class="form-cad">
+    <form method="post" th:action="@{/colaboradorAlocacao/gravar}" th:object="${colaboradorAlocacao}" class="formulario">
+
+        <!-- Atividade -->
+        <label>Atividade</label>
+        <select th:field="*{atividade.id}">
+            <option th:each="atv : ${atividades}"
+                    th:value="${atv.id}"
+                    th:text="${atv.id + ' - ' + atv.nomeAtividade}">
+            </option>
+        </select>
+
+        <!-- Colaboradores -->
+        <label>Colaboradores</label>
+        <select th:field="*{colaborador.id}">
+            <option th:each="col : ${colaboradoresDisponiveis}"
+                    th:value="${col.id}"
+                    th:text="${col.id + ' - ' + col.nome}">
+            </option>
+        </select>
+
+        <!-- Responsável -->
+        <label>Responsável</label>
+        <input type="checkbox" th:field="*{responsavel}" />
+
+        <button type="submit">Salvar</button>
+    </form>
+</section>
+        </body>
+    </html>

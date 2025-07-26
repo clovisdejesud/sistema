@@ -3,6 +3,8 @@ package com.senac.sistema.controller;
 
 import com.senac.sistema.model.Atividade;
 import com.senac.sistema.service.AtividadeService;
+import com.senac.sistema.service.ColaboradorService;
+import com.senac.sistema.service.IndividuoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AtividadeController {
      @Autowired
     private AtividadeService atividadeService;
+     
+     @Autowired
+     private ColaboradorService colaboradorService;
+     
+     @Autowired
+     private IndividuoService individuoService;
     
        
     @GetMapping("/cadastro")
@@ -69,5 +77,17 @@ public class AtividadeController {
     public String detalhesAtividade(@PathVariable Integer id, Model model) {
         model.addAttribute("atividade", atividadeService.buscarAtividadeComParticipantes(id));
         return "atividade-detalhes"; // Nova página Thymeleaf
+    }
+    
+    @GetMapping("/gerenciar-alocacao/{id}")
+    public String gerenciarAlocacao(@PathVariable Integer id, Model model){
+        Atividade atividade = atividadeService.buscarAtividadeComParticipantes(id);
+        
+        model.addAttribute("atividade", atividade);
+        
+        model.addAttribute("colaboradoresDisponiveis", colaboradorService.listarTodos());
+        model.addAttribute("individuosDisponiveis", individuoService.listarTodos());
+        
+        return "atividade-colaborador";
     }
 }

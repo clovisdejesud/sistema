@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
-        <title>Sistema de Cadastramento</title>
+        <title>Index</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -36,7 +36,7 @@
             
                 <div sec:authorize="hasAnyRole('Administrador')">
                     <a href="/atividade/cadastro">Atividade</a>
-                    <a th:href="@{/atividade/atividade-colaborador}">Vinculo Atividade</a>
+                    <a th:href="@{/colaboradorAlocacao/alocar}">Alocação Colaborador</a>
                 </div>
             
                 <div class="menu-item dropdown">
@@ -46,6 +46,7 @@
                         <a href="/individuo/lista">Listar Indivíduos</a>
                         <a href="/colaborador/lista">Listar Colaboradores</a>
                         <a href="/usuario/lista">Listar Usuários</a>
+                        <a href="/atividade/lista">Listagem de Atividades</a>
                         <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores com Atividades</a>
                         <a th:href="@{/atividade/lista-com-participantes}">Atividade por Participantes</a>
                     </div>             
