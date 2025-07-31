@@ -3,8 +3,11 @@ package com.senac.sistema.controller;
 
 import com.senac.sistema.model.Role;
 import com.senac.sistema.model.Colaborador;
+import com.senac.sistema.model.ColaboradorAlocacao;
 import com.senac.sistema.repository.ColaboradorRepository;
+import com.senac.sistema.service.ColaboradorAlocacaoService;
 import com.senac.sistema.service.ColaboradorService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,6 +32,10 @@ public class ColaboradorController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     
+    @Autowired
+    private ColaboradorAlocacaoService colaboradorAlocacaoService;
+    
+    
     @GetMapping("/cadastro")
     public String exibirFormulario(Model model) {
         model.addAttribute("colaborador", new Colaborador());
@@ -43,6 +50,8 @@ public class ColaboradorController {
         return "colaborador-cadastro";
     }
 
+    colaboradorService.salvarColaborador(colaborador);
+    
     if (colaborador.getId() != null) {
         return "redirect:/colaborador/lista?sucessoAlteracao";
     } else {
@@ -62,17 +71,23 @@ public class ColaboradorController {
         return "redirect:/colaborador/lista";
     }
     
-     @GetMapping("/lista")
+    @GetMapping("/lista")
     public String lista(Model model) {
-        model.addAttribute("colaborador", colaboradorService.listarTodos());
+        model.addAttribute("colaboradores", colaboradorService.listarTodos());
         return "colaborador-listagem";
     }
     
     @GetMapping("/lista-com-atividades")
-    public String listarColaboradoresComAtividades(Model model){
-        model.addAttribute("colaboradores", colaboradorService.listarTodosColaboradoresComAtividades());
-        return "colaborador-atividades-listagem";
+    public String listarColaboradoresComAtividades(Model model) {
+        // Seu código original que talvez carregasse "colaboradores"
+        // Se você ainda quiser listar colaboradores (sem a alocação específica), pode manter esta linha:
+        // model.addAttribute("colaboradores", colaboradorService.listarTodos()); 
+
+        // --- ADIÇÃO NECESSÁRIA: Adicionar a lista de alocações ao Model ---
+        List<ColaboradorAlocacao> alocacoes = colaboradorAlocacaoService.listarTodos();
+        model.addAttribute("alocacoes", alocacoes);
+
+        return "colaborador-atividade-listagem"; // Nome do seu arquivo HTML
     }
-    
-    
+   
 }

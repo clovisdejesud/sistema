@@ -18,46 +18,39 @@
         
 <!-- Navegação -->
         <nav class="menu-nav">
-           
-                <a href="/">Página Inicial</a>
-                <a href="/familia/cadastro">Familia</a>
-                
-                <sec:authorize access="hasAnyRole('Administrador','Usuario')">
-                    <a th:href="@{/individuo/cadastro}">Individuo</a>
-                </sec:authorize>
-                
-                <div sec:authorize="hasRole('Administrador', 'Colaborador')">
-                    <a href="/colaborador/cadastro">Colaborador</a>
+            <div class="menu-item dropdown">
+                <a href="#">Cadastrar</a>
+                <div class="dropdown-content">
+                    <sec:authorize access="hasAnyRole('Administrador','Usuario')">
+                        <a th:href="@{/individuo/cadastro}">Individuo</a>
+                    </sec:authorize>
+                    <div sec:authorize="hasRole('Administrador', 'Colaborador')">
+                        <a href="/colaborador/cadastro">Colaborador</a>
+                    </div>
+                    <sec:authorize access="hasRole('Administrador')">
+                        <a th:href="@{/usuario/cadastro}">Usuário</a>
+                    </sec:authorize>
+                    <div sec:authorize="hasAnyRole('Administrador')">
+                        <a href="/atividade/cadastro">Atividade</a>
+                    </div>
                 </div>
-            
-                <sec:authorize access="hasRole('Administrador')">
-                    <a th:href="@{/usuario/cadastro}">Usuário</a>
-                </sec:authorize>
-            
-                <div sec:authorize="hasAnyRole('Administrador')">
-                    <a href="/atividade/cadastro">Atividade</a>
-                    <a th:href="@{/colaboradorAlocacao/alocar}">Alocação Colaborador</a>
-                </div>
-            
+            </div>
                 <div class="menu-item dropdown">
-                    <a href="#">Consulta</a>
+                    <a href="#">Relatórios</a>
                     <div class="dropdown-content">
-                        <a href="/familia/lista">Listar Famílias</a>
-                        <a href="/individuo/lista">Listar Indivíduos</a>
-                        <a href="/colaborador/lista">Listar Colaboradores</a>
-                        <a href="/usuario/lista">Listar Usuários</a>
-                        <a href="/atividade/lista">Listagem de Atividades</a>
-                        <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores com Atividades</a>
-                        <a th:href="@{/atividade/lista-com-participantes}">Atividade por Participantes</a>
+                        <a href="/familia/lista">Famílias</a>
+                        <a href="/individuo/lista">Indivíduos</a>
+                        <a href="/usuario/lista">Usuários</a>
+                        <a href="/atividade/lista">Colaboradores</a>
                     </div>             
                 </div>         
         </nav>
 
         <div class="conteudo-centralizado">
-<!-- Títulos e subtitulos -->
+            <!-- Títulos e subtitulos -->
             <h1>Sistema de Cadastramento</h1>
 
-            <p>Seja bem-vindo ao Sistema de Cadastramento</p>
+            <p>Seja bem-vindo, clique em uma das opções do menu acima</p>
         </div>
         <div>
             <section class="img-destaque">

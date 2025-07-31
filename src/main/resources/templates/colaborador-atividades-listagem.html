@@ -10,63 +10,68 @@
 <body>
     <nav class="menu-nav">
         <a href="/">Página Inicial</a>
-        <a href="/familia/cadastro">Familia</a>
-        <div sec:authorize="hasAnyRole('Administrador','Usuario')">
-            <a th:href="@{/individuo/cadastro}">Individuo</a>
-        </div>
-        <div sec:authorize="hasAnyRole('Administrador','Colaborador')">
-            <a th:href="@{/colaborador/cadastro}">Colaborador</a>
-        </div>
-        <div sec:authorize="hasRole('Administrador')">
-            <a th:href="@{/usuario/cadastro}">Usuário</a>
-        </div>
-        <div sec:authorize="hasAnyRole('Administrador')">
-            <a href="/atividade/cadastro">Atividade</a>
-            <a th:href="@{/atividade/atividade-colaborador}">Vinculo Atividade</a>
-        </div>
         <div class="menu-item dropdown">
-            <a href="#">Consulta</a>
-            <div class="dropdown-content">
-                <a href="/familia/lista">Listar Famílias</a>
-                <a href="/individuo/lista">Listar Indivíduos</a>
-                <a href="/colaborador/lista">Listar Colaboradores</a>
-                <a href="/usuario/lista">Listar Usuários</a>
-                <a href="/atividade/lista">Listagem de Atividades</a>
-                <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores por Atividade</a>
-                <a th:href="@{/atividade/lista-com-participantes}">Atividades por Participantes</a>
-            </div>          
-        </div>
+                <a href="#">Cadastrar</a>
+                <div class="dropdown-content">
+                    <sec:authorize access="hasAnyRole('Administrador','Usuario')">
+                        <a th:href="@{/individuo/cadastro}">Individuo</a>
+                    </sec:authorize>
+                    <div sec:authorize="hasRole('Administrador', 'Colaborador')">
+                        <a href="/colaborador/cadastro">Colaborador</a>
+                    </div>
+                    <sec:authorize access="hasRole('Administrador')">
+                        <a th:href="@{/usuario/cadastro}">Usuário</a>
+                    </sec:authorize>
+                    <div sec:authorize="hasAnyRole('Administrador')">
+                        <a href="/atividade/cadastro">Atividade</a>
+                    </div>
+                </div>
+            </div>
+                <div class="menu-item dropdown">
+                    <a href="#">Relatórios</a>
+                    <div class="dropdown-content">
+                        <a href="/familia/lista">Famílias</a>
+                        <a href="/individuo/lista">Indivíduos</a>
+                        <a href="/usuario/lista">Usuários</a>
+                        <a href="/atividade/lista">Colaboradores</a>
+                    </div>             
+                </div> 
     </nav>
     
     <div class="conteudo-centralizado">
-        <h1>Colaboradores e Suas Atividades Participantes</h1>
+        <h1>Alocações de Colaboradores em Atividades</h1>
     </div>
 
     <section class="fundo-claro">
-        <div th:if="${#lists.isEmpty(colaboradores)}" class="mensagem-info">
-            <p>Nenhum colaborador encontrado ou registrado em atividades.</p>
+        <div th:if="${#lists.isEmpty(alocacoes)}" class="mensagem-info">
+            <p>Nenhuma alocação encontrada.</p>
         </div>
-        <table th:unless="${#lists.isEmpty(colaboradores)}" class="tabela-listagem">
+        <table th:unless="${#lists.isEmpty(alocacoes)}" class="tabela-listagem">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ID Alocação</th>
                     <th>Nome do Colaborador</th>
-                    <th>Atividades Participantes</th>
+                    <th>Atividade</th>
+                    <th>Responsável</th>
+                    <th>Ações</th>
                     </tr>
             </thead>
             <tbody>
-                <tr th:each="colaborador : ${colaboradores}">
-                    <td th:text="${colaborador.id}">1</td>
-                    <td th:text="${colaborador.nome}">Nome do Colaborador</td>
+                <tr th:each="alocacoes : ${alocacoes}">
+                    <td th:text="${alocacao.id}"></td>
+                    <td th:text="${alocacao.colaborador.nome}"></td>
+                    <td th:text="${alocacao.atividade.nomeAtividade}"></td>
+                    <td th:text="${alocacao.atividade.periodo}"></td>
                     <td>
-                        <ul th:if="${!#sets.isEmpty(colaborador.atividades)}" class="lista-simples">
-                            <li th:each="atividade : ${colaborador.atividades}">
-                                <span th:text="${atividade.nomeAtividade}">Atividade Y</span> 
-                                (<span th:text="${atividade.periodo}">Manhã</span>)
-                            </li>
-                        </ul>
-                        <span th:if="${#sets.isEmpty(colaborador.atividades)}" class="texto-cinza">Nenhuma atividade associada.</span>
+                        <span th:text="${alocaco.responsavel? 'Sim' : 'Não'}"></span>
                     </td>
+                     
+                    <td>
+                        <a th:href="@{'/colaboradorAlocacao/alterar/' + ${alocacao.id}}">Alterar</a>
+                        <a th:href="@{'/colaboradorAlocacao/excluir/' + ${alocacao.id}}" 
+                           onclick="return confirm('Tem certeza que deseja excluir esta alocação?');">Excluir</a>
+                    </td>   
+                    
                 </tr>
             </tbody>
         </table>

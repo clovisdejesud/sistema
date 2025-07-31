@@ -18,39 +18,34 @@
     </head>
     <body>
         <!-- Navegação -->
-        <nav class="menu-nav">
-           
-                <a href="/">Página Inicial</a>
-                <a href="/familia/cadastro">Familia</a>
-                
-                <sec:authorize access="hasAnyRole('Administrador','Usuario')">
-                    <a th:href="@{/individuo/cadastro}">Individuo</a>
-                </sec:authorize>
-                
-                <sec:authorize access="hasAnyRole('Administrador','Colaborador')">
-                    <a th:href="@{/colaborador/cadastro}">Colaborador</a>
-                </sec:authorize>
-                
-                <sec:authorize access="hasAnyRole('Administrador')">
-                    <a th:href="@{/usuario/cadastro}">Usuário</a>
-                </sec:authorize>
-                
-                <div sec:authorize="hasAnyRole('Administrador')">
-                    <a href="/atividade/cadastro">Atividade</a>
-                    <a th:href="@{/atividade/atividade-colaborador}">Vinculo Atividade</a>
-                </div>
-            
+        <nav class="menu-nav">        
+            <a href="/">Página Inicial</a>
                 <div class="menu-item dropdown">
-                    <a href="#">Consulta</a>
+                <a href="#">Cadastrar</a>
+                <div class="dropdown-content">
+                    <sec:authorize access="hasAnyRole('Administrador','Usuario')">
+                        <a th:href="@{/individuo/cadastro}">Individuo</a>
+                    </sec:authorize>
+                    <div sec:authorize="hasRole('Administrador', 'Colaborador')">
+                        <a href="/colaborador/cadastro">Colaborador</a>
+                    </div>
+                    <sec:authorize access="hasRole('Administrador')">
+                        <a th:href="@{/usuario/cadastro}">Usuário</a>
+                    </sec:authorize>
+                    <div sec:authorize="hasAnyRole('Administrador')">
+                        <a href="/atividade/cadastro">Atividade</a>
+                    </div>
+                </div>
+            </div>
+                <div class="menu-item dropdown">
+                    <a href="#">Relatórios</a>
                     <div class="dropdown-content">
-                        <a href="/familia/lista">Listar Famílias</a>
-                        <a href="/individuo/lista">Listar Indivíduos</a>
-                        <a href="/usuario/lista">Listar Usuários</a>
-                        <a href="/atividade/lista">Listagem de Atividades</a>
-                        <hr> <a th:href="@{/colaborador/lista-com-atividades}">Colaboradores com Atividades</a>
-                        <a th:href="@{/atividade/lista-com-participantes}">Atividade por Participantes</a>
+                        <a href="/familia/lista">Famílias</a>
+                        <a href="/individuo/lista">Indivíduos</a>
+                        <a href="/usuario/lista">Usuários</a>
+                        <a href="/atividade/lista">Colaboradores</a>
                     </div>             
-                </div>         
+                </div>          
         </nav>
     
     <div class="conteudo-centralizado">
@@ -89,7 +84,7 @@
                     <a th:href="@{'/atividade/alterar/' + ${atividade.id}}">Alterar</a>
                     <a th:href="@{'/atividade/excluir/' + ${atividade.id}}"th:onclick="'return confirm(\'Deseja excluir o ID ' + ${atividade.id} + '?\')'">
                         Excluir</a>
-                    <a th:href="@{/atividade/gerenciar-alocacao/{id}(id=${atividade.id})}">Alocação</a>
+                    <a th:href="@{/colaboradorAlocacao/alocar/{id}(id=${atividade.id})}">Alocação</a>
                 </td>
             </tr>
             

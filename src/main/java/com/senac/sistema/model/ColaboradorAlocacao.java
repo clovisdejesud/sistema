@@ -14,14 +14,10 @@ import lombok.Data;
 @Entity
 @Table(name="colaboradoralocacao")
 public class ColaboradorAlocacao {
-    @Id
+   @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    public Integer getId(){
-        return this.id;
-    }
-    
+
     @ManyToOne
     @JoinColumn(name = "atividade_id") // FK no banco
     private Atividade atividade;
@@ -31,5 +27,8 @@ public class ColaboradorAlocacao {
     private Colaborador colaborador;
 
     private boolean responsavel;
-    
+
+    public Integer getId() {
+        return this.id;
+    }
 }

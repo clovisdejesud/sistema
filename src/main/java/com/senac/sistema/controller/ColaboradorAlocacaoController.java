@@ -31,12 +31,9 @@ public class ColaboradorAlocacaoController {
     
     @Autowired
      private ColaboradorService colaboradorService;
-     
-     @Autowired
-     private IndividuoService individuoService;
-    
-     @Autowired
-     private AtividadeService atividadeService;
+        
+    @Autowired
+    private AtividadeService atividadeService;
      
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -49,30 +46,50 @@ public class ColaboradorAlocacaoController {
         return "colaboradoralocacao"; // nome do HTML
     }
     
+    @GetMapping("/alocar/{atividadeId}")
+    public String exibirPaginaAlocacaoComAtividade(@PathVariable Integer atividadeId, Model model){
+        var atividadeSelecionada = atividadeService.buscarPorId(atividadeId);
+        
+        ColaboradorAlocacao colaboradorAlocacao = new ColaboradorAlocacao();
+        colaboradorAlocacao.setAtividade(atividadeSelecionada);
+        
+        model.addAttribute("atividades", atividadeService.listarTodos());
+        model.addAttribute("colaboradoresDisponiveis", colaboradorService.listarTodos());
+        model.addAttribute("colaboradorAlocacao", colaboradorAlocacao);
+        
+        return "colaboradoralocacao";
+        
+    }
+    
     @GetMapping("/cadastro")
     public String exibirFormulario(Model model) {
         model.addAttribute("colaboradorAlocacao", new ColaboradorAlocacao());
-        model.addAttribute("papeis", Role.values());
+        //model.addAttribute("papeis", Role.values());
+        model.addAttribute("atividades", atividadeService.listarTodos()); 
+        model.addAttribute("colaboradoresDisponiveis", colaboradorService.listarTodos());
         return "colaboradorAlocacao-cadastro";
     }
     
     @PostMapping("/gravar")
     public String processarFormulario(@ModelAttribute ColaboradorAlocacao colaboradorAlocacao, BindingResult result, Model model){
     if(result.hasErrors()){
-        model.addAttribute("colaborador", colaboradorAlocacao);
-        return "colaboradorAlocacao-cadastro";
+        model.addAttribute("colaboradorAlocacao", colaboradorAlocacao);
+        model.addAttribute("atividades", atividadeService.listarTodos());
+        model.addAttribute("colaboradoreDisponiveis", colaboradorService.listarTodos());
+        return "colaboradorAlocacao";
     }
 
-    if (colaboradorAlocacao.getId() != null) {
-        return "redirect:/colaboradorAlocacao/lista?sucessoAlteracao";
-    } else {
-        return "redirect:/colaboradorAlocacao/cadastro?sucessoCadastro";
-    }
+    colaboradorAlocacaoRepository.save(colaboradorAlocacao);
+    
+    return "redirect:/colaborador/lista-com-atividades?alocarSucesso";
+    
     }
     
     @GetMapping("/alterar/{id}")
     public String alterar(@PathVariable Integer id, Model model){
-        model.addAttribute("colaborador", colaboradorAlocacaoService.buscarPorId(id));
+        model.addAttribute("colaboradorAlocacao", colaboradorAlocacaoService.buscarPorId(id));
+        model.addAttribute("atividades", atividadeService.listarTodos());
+        model.addAttribute("colabodoresDisponiveis", colaboradorService.listarTodos());
         return "colaboradorAlocacao-cadastro";
     }
     
@@ -82,13 +99,13 @@ public class ColaboradorAlocacaoController {
         return "redirect:/colaboradorAlocacao/lista";
     }
     
-     @GetMapping("/lista")
+    
+    
+     /*@GetMapping("/lista")
     public String lista(Model model) {
         model.addAttribute("colaboradorAlocacao", colaboradorAlocacaoService.listarTodos());
         return "colaboradorAlocacao-listagem";
     }
-    
-    
-
-    
+    */
+      
 }

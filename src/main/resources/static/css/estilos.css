@@ -99,7 +99,7 @@ nav li {
     left: 0;
     background-color: #FE7743;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-    width: 260px;
+    width: 200px; /*alterei de 260 para 200 */
     z-index: 100;
     text-align: left;
     
