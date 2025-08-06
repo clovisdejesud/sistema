@@ -81,7 +81,7 @@ public class ColaboradorController {
     public String listarColaboradoresComAtividades(Model model) {
         // Seu código original que talvez carregasse "colaboradores"
         // Se você ainda quiser listar colaboradores (sem a alocação específica), pode manter esta linha:
-        // model.addAttribute("colaboradores", colaboradorService.listarTodos()); 
+         model.addAttribute("colaboradores", colaboradorService.listarTodos()); 
 
         // --- ADIÇÃO NECESSÁRIA: Adicionar a lista de alocações ao Model ---
         List<ColaboradorAlocacao> alocacoes = colaboradorAlocacaoService.listarTodos();

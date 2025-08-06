@@ -3,12 +3,10 @@ package com.senac.sistema.controller;
 
 
 import com.senac.sistema.model.ColaboradorAlocacao;
-import com.senac.sistema.model.Role;
 import com.senac.sistema.repository.ColaboradorAlocacaoRepository;
 import com.senac.sistema.service.AtividadeService;
 import com.senac.sistema.service.ColaboradorAlocacaoService;
 import com.senac.sistema.service.ColaboradorService;
-import com.senac.sistema.service.IndividuoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -75,7 +73,7 @@ public class ColaboradorAlocacaoController {
     if(result.hasErrors()){
         model.addAttribute("colaboradorAlocacao", colaboradorAlocacao);
         model.addAttribute("atividades", atividadeService.listarTodos());
-        model.addAttribute("colaboradoreDisponiveis", colaboradorService.listarTodos());
+        model.addAttribute("colaboradoresDisponiveis", colaboradorService.listarTodos());
         return "colaboradorAlocacao";
     }
 
@@ -89,7 +87,7 @@ public class ColaboradorAlocacaoController {
     public String alterar(@PathVariable Integer id, Model model){
         model.addAttribute("colaboradorAlocacao", colaboradorAlocacaoService.buscarPorId(id));
         model.addAttribute("atividades", atividadeService.listarTodos());
-        model.addAttribute("colabodoresDisponiveis", colaboradorService.listarTodos());
+        model.addAttribute("colaboradoresDisponiveis", colaboradorService.listarTodos());
         return "colaboradorAlocacao-cadastro";
     }
     
@@ -99,13 +97,4 @@ public class ColaboradorAlocacaoController {
         return "redirect:/colaboradorAlocacao/lista";
     }
     
-    
-    
-     /*@GetMapping("/lista")
-    public String lista(Model model) {
-        model.addAttribute("colaboradorAlocacao", colaboradorAlocacaoService.listarTodos());
-        return "colaboradorAlocacao-listagem";
-    }
-    */
-      
 }

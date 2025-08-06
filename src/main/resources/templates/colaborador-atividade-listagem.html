@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<!<!-- colaborador-listagem.html // Relatórios/Colaboradores-->
-<html>
-     <head>
-       <title>Colaboradores</title>
+<!DOCTYPE html> <!<!-- colaborador-atividade-listagem -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alocações</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -15,10 +14,9 @@
          <meta name="keywords" content="Cursos, Vunerabilidade, Carencia">
         <meta name="description" content="O CELM disponibiliza as famílias carentes apoio educacional, social e saúde.">
         <meta name="author" content="Clovis de Jesus">
-    </head>
-    <body>
-        <!-- Navegação -->
-        <nav class="menu-nav">        
+</head>
+<body>
+     <nav class="menu-nav">        
             <a href="/">Página Inicial</a>
                 <div class="menu-item dropdown">
                     <a href="#">Cadastrar</a>
@@ -47,41 +45,33 @@
                        <a th:href="@{/atividade/lista}">Atividades</a>
                        <a th:href="@{/colaborador/lista-com-atividades}">Alocações</a>
                    </div>             
-               </div>           
+               </div>          
         </nav>
-    
-    <div class="conteudo-centralizado">
-        <!-- Títulos e subtitulos-->
-        <h1>Relatório de Colaboradores</h1>
-    </div>
-    
-    <section class="fundo-claro">
+            <div class="conteudo-centralizado">
+                <h1>Relatório de Colaboradores Alocados</h1>
+            </div>
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Endereço</th>
-                <th>Telefone</th>
-                <th>Email</th>
+                <th>Colaborador</th>
+                <th>Atividade</th>
+                <th>Responsável</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="colaborador : ${colaboradores}" class="linha-tracejada">
-                <td th:text="${colaborador.id}"></td>
-                <td th:text="${colaborador.nome}"></td>
-                <td th:text="${colaborador.endereco}"></td>
-                <td th:text="${colaborador.telefone}"></td>
-                <td th:text="${colaborador.email}"></td>
+            <tr th:each="alocacao : ${alocacoes}" class="linha-tracejada">
+                <td th:text="${alocacao.id}"></td>
+                <td th:text="${alocacao.colaborador.nome}">Nome</td>
+                <td th:text="${alocacao.atividade.nomeAtividade}">Atividade</td>
+                <td th:text="${alocacao.responsavel ? 'Sim' : 'Não'}">Responsável</td>
                 <td>
-                        <a th:href="@{'/colaborador/alterar/' + ${colaborador.id}}">Alterar</a>
-                        <a th:href="@{'/colaborador/excluir/' + ${colaborador.id}}" 
+                        <a th:href="@{'/colaboradorAlocacao/alterar/' + ${alocacao.id}}">Alterar</a>
+                        <a th:href="@{'/colaboradorAlocacao/excluir/' + ${alocacao.id}}" 
                            onclick="return confirm('Tem certeza que deseja excluir esta alocação?');">Excluir</a>
-                        <a th:href="@{/colaboradorAlocacao/alocar/{id}(id=${atividade.id})}">Alocação</a>
+                        <a th:href="@{/colaboradorAlocacao/alocar/{id}(id=${alocacao.atividade.id})}">Alocação</a>
                 </td>   
             </tr>
         </tbody>
     </table>
-    </section>
-    </body>
+</body>
 </html>

@@ -38,10 +38,12 @@
             <div class="menu-item dropdown">
                 <a href="#">Relatórios</a>
                 <div class="dropdown-content">
-                    <a href="/familia/lista">Famílias</a>
-                    <a href="/individuo/lista">Indivíduos</a>
-                    <a href="/usuario/lista">Usuários</a>
-                    <a href="/atividade/lista">Colaboradores</a>
+                    <a th:href="@{/familia/lista}">Famílias</a>
+                    <a th:href="@{/individuo/lista}">Indivíduos</a>
+                    <a th:href="@{/usuario/lista}">Usuários</a>
+                    <a th:href="@{/colaborador/lista}">Colaboradores</a>
+                    <a th:href="@{/atividade/lista}">Atividades</a>
+                    <a th:href="@{/colaborador/lista-com-atividades}">Alocações</a>
                 </div>             
             </div>       
         </nav>
